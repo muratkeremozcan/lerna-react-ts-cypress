@@ -51,6 +51,8 @@ npx create-react-app packages/app-c --template typescript
 
 > slightly modify `App.tsx` files to make the unique.
 
+> Configure tsconfig.json [as such(https://github.com/dalinarkholin/example-typescript-monorepo/blob/master/tsconfig.json)] at the root. Include the tsconfig.json file in the `packages/<app>/tsconfig.json` files.
+
 
 Add scripts to main `package.json`, to run all similarly-named scripts in the packages (ex: unit test), and run unique scripts (ex: start app-abc).  
 ```json
@@ -62,11 +64,11 @@ Add scripts to main `package.json`, to run all similarly-named scripts in the pa
   }
 ```
 
+
+
 ### Add Cypress as a common dependency
 
-Looking at [Cypress source repo](https://github.com/cypress-io/cypress/tree/develop/packages) it appears Cypress was installed at root level, but a cypress folder was created for packages.
-
-TODO: Add more info.
+TODO: Add more info once it's figured out.
 
 ### Resources
 
