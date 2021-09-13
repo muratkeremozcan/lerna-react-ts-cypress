@@ -1,0 +1,22 @@
+{
+  "name": "lerna-react-ts-cypress",
+  "version": "1.0.0",
+  "description": "lerna react typescript yarn workspaces cypress github actions",
+  "main": "index.js",
+  "author": "Murat Ozcan <muratkerem@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "cypress": "^8.3.1",
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "start:a": "lerna run start --stream --scope app-a",
+    "start:b": "lerna run start --stream --scope app-b",
+    "start:c": "lerna run start --stream --scope app-c",
+    "test": "lerna run test --stream"
+  }
+}
