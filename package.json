@@ -28,6 +28,9 @@
     "start:a": "lerna run start --stream --scope app-a",
     "start:b": "lerna run start --stream --scope app-b",
     "start:c": "lerna run start --stream --scope app-c",
-    "test": "lerna run test --stream"
+    "test": "lerna run test --stream",
+    "cypress:open-a": "lerna run cypress:open --stream --scope app-a",
+    "cypress:open-b": "lerna run cypress:open --stream --scope app-b",
+    "cypress:open-c": "lerna run cypress:open --stream --scope app-c"
   }
 }
