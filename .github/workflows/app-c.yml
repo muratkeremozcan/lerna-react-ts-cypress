@@ -1,5 +1,4 @@
 name: app-c
-# only run this workflow when something in the app-c changes, or in this workflow file
 on:
   push:
     # only run when app-a changes, or in this workflow file changes, or package.json changes
@@ -21,7 +20,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:a
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://localhost:3002'
           project: ./packages/app-c
           record: true
         env:

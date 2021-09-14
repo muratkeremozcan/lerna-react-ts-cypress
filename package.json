@@ -26,9 +26,9 @@
     "start-server-and-test": "^1.14.0"
   },
   "scripts": {
-    "start:a": "lerna run start --stream --scope app-a",
-    "start:b": "lerna run start --stream --scope app-b",
-    "start:c": "lerna run start --stream --scope app-c",
+    "start:a": "PORT=3000 lerna run start --stream --scope app-a",
+    "start:b": "PORT=3001 lerna run start --stream --scope app-b",
+    "start:c": "PORT=3002 lerna run start --stream --scope app-c",
     "test": "lerna run test --stream",
     "cypress:open-a": "lerna run cypress:open --stream --scope app-a",
     "cypress:open-b": "lerna run cypress:open --stream --scope app-b",
@@ -37,7 +37,7 @@
     "cypress:run-b": "lerna run cypress:run --stream --scope app-b",
     "cypress:run-c": "lerna run cypress:run --stream --scope app-c",
     "test:ci-a": "server-test start:a 3000 cypress:run-a",
-    "test:ci-b": "server-test start:b 3000 cypress:run-b",
-    "test:ci-c": "server-test start:c 3000 cypress:run-c"
+    "test:ci-b": "server-test start:b 3001 cypress:run-b",
+    "test:ci-c": "server-test start:c 3002 cypress:run-c"
   }
 }

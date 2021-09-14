@@ -20,7 +20,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: yarn start:a
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://localhost:3001'
           project: ./packages/app-b
           record: true
         env:
