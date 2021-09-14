@@ -53,19 +53,6 @@ npx create-react-app packages/app-c --template typescript
 
 > Configure tsconfig.json [as such(https://github.com/dalinarkholin/example-typescript-monorepo/blob/master/tsconfig.json)] at the root. Include the tsconfig.json file in the `packages/<app>/tsconfig.json` files.
 
-
-Add scripts to main `package.json`, to run all similarly-named scripts in the packages (ex: unit test), and run unique scripts (ex: start app-abc).  
-```json
-  "scripts": {
-    "start:a": "lerna run start --stream --scope app-a",
-    "start:b": "lerna run start --stream --scope app-b",
-    "start:c": "lerna run start --stream --scope app-c",
-    "test": "lerna run test --stream"
-  }
-```
-
-
-
 ### Add Cypress as a common dependency
 
 TODO: Add more info once it's figured out.
