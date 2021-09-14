@@ -1,7 +1,7 @@
-describe('app-a', () => {
+describe('app-c', () => {
   it('passes sanity', () => {
     cy.visit('/');
     cy.get('.App-header').should('be.visible');
-    cy.contains('p', 'app-c');
+    cy.contains('This is app-a');
   })
 })
