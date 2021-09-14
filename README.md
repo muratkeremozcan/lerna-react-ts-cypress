@@ -1,6 +1,45 @@
 # Lerna monorepo, React TS, Cypress example
 
-## How this was setup
+Lerna & Yarn workspaces monorepo with React TS apps, Cypress tests at app level, CI running with Github Actions workflows depending on the changed files.
+
+```bash
+yarn install / yarn i / yarn # at root level; all sub-level dependencies are taken care of
+yarn start:a / start:b / start:c # start app-*
+# on a different tab
+yarn cypress:open-a / cypress:open-b / cypress:open-c #  open cypress test runner at app level
+# on a different tab
+yarn cypress:run-a / cypress:run-b / cypress:run-c # run cypress headlessly at app level
+
+# if you are not using GitHub actions, or if you want to test locally, server-test can be utilized
+# make sure the app is not running
+yarn test:ci-a / test:ci-b / test:ci-c # start app-*, run tests headlessly against it
+```
+
+## Key ideas
+
+* Lerna & Yarn workspaces config makes it so that we can install at root, and not worry about sub-level app dependencies.
+
+* While at the root, utilize `lerna --stream --scope` to execute scripts within `packages/app-*` context. 
+   
+* Cypress is installed at the root, but the spec files live with the packages. To run/open tests per app:
+   1. trigger `cypress run/open` from root-level, in order to hit app-level `package.json` script
+   2. from app-level `package.json` script, invoke the node_modules back at the root (ex: `"../../node_modules/.bin/cypress open"`)
+
+* For CI
+  1. only execute when app-* changes, or its workflow file changes, or package.json changes
+  2. start the app utilizing root level script (lerna & yarn workspaces ftw)
+  3. Wait for app to be served (`wait-on: 'http://localhost:3000'`) 
+  4. Specify the project to run using [Cypress --project parameter](https://github.com/cypress-io/github-action/blob/master/README.md#project) (ex: `project: ./packages/app-a`) . This is the key difference to local test execution.
+   
+## Test Reports
+
+[Cypress Dashboard](https://dashboard.cypress.io/projects/6v2c2y/runs?branches=%5B%5D&committers=%5B%5D&flaky=%5B%5D&page=1&status=%5B%5D&tags=%5B%5D&timeRange=%7B%22startDate%22%3A%221970-01-01%22%2C%22endDate%22%3A%222038-01-19%22%7D)
+
+[Github Actions](https://github.com/muratkeremozcan/lerna-react-ts-cypress/actions)
+
+### How this was setup
+
+<details>
 
 ### Lerna & Yarn workspaces
 
@@ -11,7 +50,7 @@
 
 
 ```bash
-yarn config set workspaces-experimental true # enable yarn workspaces
+yarn config set workspaces-experimental true # enable yarn workspaces, has to be a private repo
 yarn init # generate package.json
 yarn add lerna --dev # add lerna
 lerna init # creates packages/ folder and lerna.json file
@@ -43,43 +82,23 @@ npx create-react-app packages/app-b --template typescript
 npx create-react-app packages/app-c --template typescript
 ```
 
-> Ideally we do not have cross dependencies between our packages.
+> The assumption is that we do not have cross dependencies between our packages.
 
 > Since we are using Yarn workspaces, we do not need `lerna bootstrap --hoist` at this point, which is used to move common dependencies to root node_modules (if using npm).
 
-> Replace "test" scripts in the `packages/<app>/package.json` files [as such](https://github.com/facebook/create-react-app/issues/1137#issuecomment-279180815).
-
-> slightly modify `App.tsx` files to make the unique.
-
-> Configure tsconfig.json [as such(https://github.com/dalinarkholin/example-typescript-monorepo/blob/master/tsconfig.json)] at the root. Include the tsconfig.json file in the `packages/<app>/tsconfig.json` files.
-
-
-Add scripts to main `package.json`, to run all similarly-named scripts in the packages (ex: unit test), and run unique scripts (ex: start app-abc).  
-```json
-  "scripts": {
-    "start:a": "lerna run start --stream --scope app-a",
-    "start:b": "lerna run start --stream --scope app-b",
-    "start:c": "lerna run start --stream --scope app-c",
-    "test": "lerna run test --stream"
-  }
-```
-
-
-
 ### Add Cypress as a common dependency
 
-TODO: Add more info once it's figured out.
+Install it at the root, that is it.
+
+</details>
+
 
 ### Resources
 
-https://www.jannikbuschke.de/blog/monorepo-with-lerna-react-and-typescript/
+[Lerna commands](https://github.com/lerna/lerna/blob/main/commands/run/README.md)
 
-https://medium.com/@jsilvax/a-workflow-guide-for-lerna-with-yarn-workspaces-60f97481149d
+Monorepo examples: [Jannik Buschke's blog](https://www.jannikbuschke.de/blog/monorepo-with-lerna-react-and-typescript/), [JSilvax's blog](https://medium.com/@jsilvax/a-workflow-guide-for-lerna-with-yarn-workspaces-60f97481149d), [Jonathan Creamer's blog](https://www.jonathancreamer.com/running-cypress-tests-in-a-monorepo/).
 
-https://dev.to/try_catch/top-5-handy-lerna-flags-for-your-monorepo-10fa
+[Gleb's monorepo CI blog](https://glebbahmutov.com/blog/test-monorepo-apps/)
 
-https://www.jonathancreamer.com/running-cypress-tests-in-a-monorepo/
-
-https://glebbahmutov.com/blog/test-monorepo-apps/
-
-https://github.com/cypress-io/cypress/tree/develop/packages
+[Cypress example recipes repo](https://github.com/cypress-io/cypress/tree/develop/packages)

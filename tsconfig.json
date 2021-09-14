@@ -7,7 +7,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "types": ["cypress", "node", "@testing-library/cypress", "cypress-real-events", "@4tw/cypress-drag-drop", "cypress-file-upload", "cypress-localstorage-commands"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
