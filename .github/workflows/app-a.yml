@@ -1,5 +1,4 @@
 name: app-a
-
 # only run this workflow when something in the app-a changes, or in this workflow file
 on:
   push:
