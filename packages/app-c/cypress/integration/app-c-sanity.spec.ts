@@ -1,6 +1,6 @@
 describe('app-a', () => {
   it('passes sanity', () => {
     cy.visit('/');
-    cy.contains('app-c');
+    cy.contains('p', 'app-c');
   })
 })
