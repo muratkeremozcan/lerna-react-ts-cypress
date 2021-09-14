@@ -19,8 +19,8 @@ jobs:
       - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
-          start: yarn start:a
-          wait-on: 'http://localhost:3002'
+          start: yarn start:c
+          wait-on: 'http://localhost:3000'
           project: ./packages/app-c
           record: true
         env:
