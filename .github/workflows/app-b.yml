@@ -1,7 +1,7 @@
 name: app-b
 on:
   push:
-    # only run when app-a changes, or in this workflow file changes, or package.json changes
+    # only run when app-* changes, or in this workflow file changes, or package.json changes
     paths:
       - 'packages/app-b/**'
       - .github/workflows/app-b.yml
