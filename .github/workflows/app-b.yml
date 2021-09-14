@@ -1,10 +1,11 @@
 name: app-b
-# only run this workflow when something in the app-b changes, or in this workflow file
 on:
   push:
+    # only run when app-a changes, or in this workflow file changes, or package.json changes
     paths:
       - 'packages/app-b/**'
       - .github/workflows/app-b.yml
+      - package.json
 
 jobs:
   test:
@@ -12,10 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # install dependencies using the root folder
-      - name: Install 📦
-        uses: cypress-io/github-action@v2
-        with:
-          runTests: false
+      # - name: Install 📦
+      #   uses: cypress-io/github-action@v2
+      #   with:
+      #     runTests: false
           
       # run tests against app-*
       # wait for app-* to be served before starting the tests
@@ -23,7 +24,7 @@ jobs:
       - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
-          install: false
+          # install: false
           start: yarn start:a
           wait-on: 'http://localhost:3000'
           project: ./packages/app-b
