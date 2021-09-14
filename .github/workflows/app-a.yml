@@ -1,0 +1,28 @@
+name: app-a
+on:
+  push:
+    # only run this workflow when something in the app-a changes
+    # or in this workflow file
+    # paths:
+    #   - 'packages/app-a/**'
+    #   - .github/workflows/app-a.yml
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      # install dependencies using the root folder
+      - name: Install 📦
+        uses: cypress-io/github-action@v2
+        with:
+          runTests: false
+          
+      # run tests against app-*
+      # wait for app-* to be served before starting the tests
+      - name: Cypress tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          start: yarn start:a
+          wait-on: 'http://localhost:3000'

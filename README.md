@@ -72,14 +72,10 @@ TODO: Add more info once it's figured out.
 
 ### Resources
 
-https://www.jannikbuschke.de/blog/monorepo-with-lerna-react-and-typescript/
+[Lerna commands](https://github.com/lerna/lerna/blob/main/commands/run/README.md)
 
-https://medium.com/@jsilvax/a-workflow-guide-for-lerna-with-yarn-workspaces-60f97481149d
+Monorepo examples: [Jannik Buschke's blog](https://www.jannikbuschke.de/blog/monorepo-with-lerna-react-and-typescript/), [JSilvax's blog](https://medium.com/@jsilvax/a-workflow-guide-for-lerna-with-yarn-workspaces-60f97481149d), [Jonathan Creamer's blog](https://www.jonathancreamer.com/running-cypress-tests-in-a-monorepo/).
 
-https://dev.to/try_catch/top-5-handy-lerna-flags-for-your-monorepo-10fa
+[Gleb's monorepo CI blog](https://glebbahmutov.com/blog/test-monorepo-apps/)
 
-https://www.jonathancreamer.com/running-cypress-tests-in-a-monorepo/
-
-https://glebbahmutov.com/blog/test-monorepo-apps/
-
-https://github.com/cypress-io/cypress/tree/develop/packages
+[Cypress example recipes repo](https://github.com/cypress-io/cypress/tree/develop/packages)
