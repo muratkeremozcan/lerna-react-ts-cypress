@@ -1,6 +1,6 @@
 # Lerna monorepo, React TS, Cypress example
 
-Lerna monorepo with React TS apps, Cypress tests at app level, CI with Github Actions.
+Lerna & Yarn workspaces monorepo with React TS apps, Cypress tests at app level, CI running with Github Actions workflows depending on the changed files.
 
 ```bash
 yarn install / yarn i / yarn # at root level; all sub-level dependencies are taken care of
