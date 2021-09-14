@@ -1,11 +1,11 @@
 name: app-a
 # only run this workflow when something in the app-a changes
 # or in this workflow file
-on:
-  push:
-    paths:
-      - 'packages/app-a/**'
-      - .github/workflows/app-a.yml
+on: [push]
+  # push:
+  #   # paths:
+  #   #   - 'packages/app-a/**'
+  #   #   - .github/workflows/app-a.yml
 
 # run tests from the packages/app-* folder
 # wait for app-* to be served before starting the tests
