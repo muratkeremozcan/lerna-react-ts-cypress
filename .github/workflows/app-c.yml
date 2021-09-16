@@ -6,7 +6,6 @@ on:
       - 'packages/app-c/**'
       - .github/workflows/app-c.yml
       - package.json
-      - README.md # to test them running simultaneously
 
 jobs:
   test:
