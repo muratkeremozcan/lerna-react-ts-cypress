@@ -15,8 +15,6 @@ jobs:
       with:
         cache: 'yarn'
     - uses: bahmutov/npm-install@v1
-      with:
-        install-command: yarn --frozen-lockfile && yarn lerna link
 
   unit-test:
     needs: install-dependencies
