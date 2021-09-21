@@ -14,8 +14,9 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         cache: 'yarn'
-        cache-dependency-path: './node-modules'
     - uses: bahmutov/npm-install@v1
+      with:
+        install-command: yarn --frozen-lockfile && yarn lerna link
 
   unit-test:
     needs: install-dependencies
@@ -26,7 +27,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'yarn'
-          cache-dependency-path: './node-modules'
       - name: Run tests
         run: yarn test
     
@@ -39,7 +39,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'yarn'
-          cache-dependency-path: './node-modules'
       - name: lint
         run: yarn lint
 
@@ -52,6 +51,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'yarn'
-          cache-dependency-path: './node-modules'
       - name: typecheck
         run: yarn typecheck
