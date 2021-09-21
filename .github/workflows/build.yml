@@ -14,6 +14,7 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
     - uses: bahmutov/npm-install@v1
 
   unit-test:
@@ -25,6 +26,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
       - name: Run tests
         run: yarn test
     
@@ -37,6 +39,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
       - name: lint
         run: yarn lint
 
@@ -49,5 +52,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
       - name: typecheck
         run: yarn typecheck
