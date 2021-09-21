@@ -38,6 +38,8 @@
     "cypress:run-c": "lerna run cypress:run --stream --scope app-c",
     "test:ci-a": "server-test start:a 3000 cypress:run-a",
     "test:ci-b": "server-test start:b 3000 cypress:run-b",
-    "test:ci-c": "server-test start:c 3000 cypress:run-c"
+    "test:ci-c": "server-test start:c 3000 cypress:run-c",
+    "lint": "eslint --ext=.js,.ts,.tsx packages",
+    "typecheck": "tsc --noEmit"
   }
 }
