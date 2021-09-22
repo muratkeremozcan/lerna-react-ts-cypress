@@ -90,6 +90,10 @@ npx create-react-app packages/app-c --template typescript
 
 Install it at the root, that is it.
 
+### Multi stage caching (build, lint, unit test, typecheck)
+
+Derived from [multi-stage-caching](https://github.com/muratkeremozcan/multi-stage-caching) sample repo. The distinction here is we are keeping the e2e workflows out of the main workflow.
+
 </details>
 
 

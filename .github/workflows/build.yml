@@ -16,7 +16,7 @@ jobs:
         cache: 'yarn'
     - uses: bahmutov/npm-install@v1
       with:
-        useRollingCache: true
+        useRollingCache: true # recommended for large projects
 
   unit-test:
     needs: install-dependencies
@@ -24,9 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'yarn'
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
@@ -39,9 +36,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'yarn'
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
@@ -54,9 +48,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          cache: 'yarn'
       - uses: bahmutov/npm-install@v1
         with:
           useRollingCache: true
