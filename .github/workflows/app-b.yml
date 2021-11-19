@@ -36,6 +36,7 @@ jobs:
           # to run component tests we need to use "cypress run-ct"
           command: yarn cypress run-ct
           project: ./packages/app-b
+          config-file: cypress/config/ci.json # leaving it default does not work https://github.com/muratkeremozcan/lerna-react-ts-cypress/runs/4265879385?check_suite_focus=true
           browser: chrome
           record: true
           tag: comp-test
