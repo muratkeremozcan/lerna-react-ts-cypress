@@ -10,6 +10,8 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@cypress/react": "^5.10.3",
+    "@cypress/webpack-dev-server": "^1.7.0",
     "@types/debug": "4.1.7",
     "@types/execa": "2.0.0",
     "@typescript-eslint/eslint-plugin": "4.31.1",
@@ -36,6 +38,8 @@
     "cypress:run-a": "lerna run cypress:run --stream --scope app-a",
     "cypress:run-b": "lerna run cypress:run --stream --scope app-b",
     "cypress:run-c": "lerna run cypress:run --stream --scope app-c",
+    "cypress:open-ct": "lerna run cypress:open-ct --stream --scope app-b",
+    "cypress:run-ct": "lerna run cypress:run-ct --stream --scope app-b",
     "test:ci-a": "server-test start:a 3000 cypress:run-a",
     "test:ci-b": "server-test start:b 3000 cypress:run-b",
     "test:ci-c": "server-test start:c 3000 cypress:run-c",

@@ -22,7 +22,9 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cypress:open": "../../node_modules/.bin/cypress open",
-    "cypress:run": "../../node_modules/.bin/cypress run"
+    "cypress:run": "../../node_modules/.bin/cypress run",
+    "cypress:open-ct": "../../node_modules/.bin/cypress open-ct",
+    "cypress:run-ct": "../../node_modules/.bin/cypress run-ct"
   },
   "eslintConfig": {
     "extends": [
