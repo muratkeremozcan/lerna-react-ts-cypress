@@ -16,15 +16,31 @@ jobs:
       # run tests against app-*
       # wait for app-* to be served before starting the tests
       # run tests against packages/app-* folder
-      - name: Cypress tests 🧪
-        uses: cypress-io/github-action@v2
+      - name: Cypress e2e tests 🧪
+        uses: cypress-io/github-action@v2.11.7
         with:
           start: yarn start:b
           wait-on: 'http://localhost:3000'
           project: ./packages/app-b
           record: true
+          tag: e2e-test
+          group: e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           
-          
+      - name: Cypress component tests 🧪
+        uses: cypress-io/github-action@v2.11.7
+        with:
+          # we have already installed everything
+          install: false
+          # to run component tests we need to use "cypress run-ct"
+          command: yarn cypress run-ct
+          project: ./packages/app-b
+          browser: chrome
+          record: true
+          tag: comp-test
+          group: component
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+    
 
