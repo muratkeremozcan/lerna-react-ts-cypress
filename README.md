@@ -3,12 +3,12 @@
 Lerna & Yarn workspaces monorepo with React TS apps, Cypress tests at app level, CI running with Github Actions workflows depending on the changed files.
 
 ```bash
-yarn install / yarn i / yarn # at root level; all sub-level dependencies are taken care of
+yarn install / yarn i / yarn --registry # at root level; all sub-level dependencies are taken care of
 yarn start:a / start:b / start:c # start app-*
 # on a different tab
-yarn cypress:open-a / cypress:open-b / cypress:open-c #  open cypress test runner at app level
+yarn cy:open-a / cy:open-b / cy:open-c #  open cypress test runner at app level
 # on a different tab
-yarn cypress:run-a / cypress:run-b / cypress:run-c # run cypress headlessly at app level
+yarn cy:run-a / cy:run-b / cy:run-c # run cypress headlessly at app level
 
 # if you are not using GitHub actions, or if you want to test locally, server-test can be utilized
 # make sure the app is not running
