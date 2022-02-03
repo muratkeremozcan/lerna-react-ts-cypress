@@ -13,8 +13,9 @@ on:
         required: true
         type: string
       times:
-        required: true
-        type: string
+        required: false
+        default: 1
+        type: integer
 
 jobs:
   repeat_spec:
@@ -25,6 +26,7 @@ jobs:
           echo Running with start-command: ${{ inputs.start-command }}
           echo On project directory: ${{ inputs.project-directory }}
           echo With title: ${{ inputs.title }}
+          echo For ${{ inputs.times }} times
 
       - name: Checkout 🛎
         uses: actions/checkout@v2

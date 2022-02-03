@@ -9,7 +9,8 @@ on:
         type: string
       times:
         description: Number of times to repeat the test
-        required: true
+        required: false
+        default: 1
         type: integer
 
 jobs:
