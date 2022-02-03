@@ -14,7 +14,6 @@ on:
         type: string
       n:
         required: false
-        default: 1
         type: integer
 
 jobs:
