@@ -20,4 +20,4 @@ jobs:
       start-command: 'yarn start:a'
       project-directory: './packages/app-a'
       title: ${{ github.event.inputs.title }}
-      n: ${{ github.event.inputs.n }}
+      # n: ${{ github.event.inputs.n }}
