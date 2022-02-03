@@ -1,33 +1,33 @@
-# name: repeat-spec-called
+name: repeat-spec-called
 
-# on:
-#   workflow_call:
-#     inputs:
-#       start-command:
-#         required: true
-#         type: string
-#       project-directory:
-#         required: true
-#         type: string
+on:
+  workflow_call:
+    inputs:
+      start-command:
+        required: true
+        type: string
+      project-directory:
+        required: true
+        type: string
 
-# jobs:
-#   repeat_spec:
-#     runs-on: ubuntu-20.04
-#     steps:
-#       - name: Print workflow inputs
-#         run: |
-#           echo Running with start-command: ${{ github.event.inputs.start-command }}
-#           echo On project directory: ${{ github.event.inputs.project-directory }}
+jobs:
+  repeat_spec:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Print workflow inputs
+        run: |
+          echo Running with start-command: ${{ github.event.inputs.start-command }}
+          echo On project directory: ${{ github.event.inputs.project-directory }}
 
-#       - name: Checkout 🛎
-#         uses: actions/checkout@v2
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
 
-#       # https://github.com/cypress-io/github-action
-#       - name: Run the spec N times
-#         uses: cypress-io/github-action@v3
-#         with:
-#           start: { { github.event.inputs.start-command } }
-#           wait-on: 'http://localhost:3000'
-#           project: { { github.event.inputs.project-directory } }
-#           browser: chrome
-#           env: 'grep="${{ github.event.inputs.title }}",burn=${{ github.event.inputs.n }}'
+      # https://github.com/cypress-io/github-action
+      - name: Run the spec N times
+        uses: cypress-io/github-action@v3
+        with:
+          start: { { github.event.inputs.start-command } }
+          wait-on: 'http://localhost:3000'
+          project: { { github.event.inputs.project-directory } }
+          browser: chrome
+          env: 'grep="${{ github.event.inputs.title }}",burn=${{ github.event.inputs.n }}'
