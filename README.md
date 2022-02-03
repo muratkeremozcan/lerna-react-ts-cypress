@@ -110,7 +110,10 @@ Monorepo examples: [Jannik Buschke's blog](https://www.jannikbuschke.de/blog/mon
 # with lerna, use triple -- to pass a cmd line arg
 
 # strings
-yarn cy:run-a -- -- --env grep=app-a,grepFilterSpecs=true,grepOmitFiltered=true     
-yarn cy:run-a -- -- --env grepTags=a,grepFilterSpecs=true,grepOmitFiltered=true     
+yarn cy:run-a -- -- --env grep=app-a    
+yarn cy:run-a -- -- --env grepTags=@a
+
+yarn cy:run-a -- -- --env grep="grep test spec"    
+yarn cy:run-a -- -- --env grepTags="@2"
 
 ```
