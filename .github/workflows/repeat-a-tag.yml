@@ -24,5 +24,5 @@ jobs:
     with:
       start-command: 'yarn start:a'
       project-directory: './packages/app-a'
-      title: ${{ github.event.inputs.tag }}
+      tag: ${{ github.event.inputs.tag }}
       times: ${{ github.event.inputs.times }}
