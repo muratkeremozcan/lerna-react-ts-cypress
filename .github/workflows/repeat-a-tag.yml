@@ -38,4 +38,4 @@ jobs:
           wait-on: 'http://localhost:3000'
           project: ./packages/app-a
           browser: chrome
-          env: 'grepTags=${{ github.event.inputs.tag }},burn=${{ github.event.inputs.n }},grepFilterSpecs=true,grepOmitFiltered=true'
+          env: 'grepTags=${{ github.event.inputs.tag }},burn=${{ github.event.inputs.n }}'
