@@ -13,9 +13,8 @@ on:
         required: true
         type: string
       times:
-        required: false
-        default: 1
-        type: number # yup, not integer, crazy GHA!!
+        required: true
+        type: string # yup, this is the only way it works, crazy GHA!!
 
 jobs:
   repeat_spec:
