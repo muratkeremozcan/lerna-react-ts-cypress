@@ -16,7 +16,7 @@ on:
         type: integer
 
 jobs:
-  repeat-b-spec:
+  repeat_b_spec:
     runs-on: ubuntu-20.04
     steps:
       - name: Print workflow inputs

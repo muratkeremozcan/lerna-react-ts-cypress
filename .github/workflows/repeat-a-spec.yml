@@ -1,24 +1,21 @@
-# https://github.com/bahmutov/test-todomvc-using-app-actions/blob/master/.github/workflows/repeat-test.yml
+name: call repeat spec for app-a
+on:
+  workflow_dispatch:
+    description: Lets the user run a spec file N times in a row
+    inputs:
+      title:
+        description: any string in a describe or it block title
+        required: true
+        type: string
+      n:
+        description: Number of times to repeat the test
+        required: false
+        default: 1
+        type: integer
 
-  
-  on:
-    workflow_dispatch:
-      description: Lets the user run a spec file N times in a row
-      inputs:
-        title:
-          description: any string in a describe or it block title
-          required: true
-          type: string
-        n:
-          description: Number of times to repeat the test
-          required: false
-          default: 1
-          type: integer
-
-
-  jobs:
-    call-repeat-spec:
-      uses: ./.github/workflows/repeat-spec-called.yml
-        with:
-          start-command: yarn start:a
-          project-directory: ./packages/app-a
+jobs:
+  call_repeat_spec:
+    uses: ./.github/workflows/repeat-spec-called.yml
+    with:
+      start-command: yarn start:a
+      project-directory: ./packages/app-a
