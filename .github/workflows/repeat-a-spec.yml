@@ -17,5 +17,5 @@ jobs:
   call_repeat_spec:
     uses: ./.github/workflows/repeat-spec-called.yml
     with:
-      start-command: yarn start:a
-      project-directory: ./packages/app-a
+      start-command: 'yarn start:a'
+      project-directory: './packages/app-a'
