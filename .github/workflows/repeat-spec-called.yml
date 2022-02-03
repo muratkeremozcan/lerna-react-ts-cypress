@@ -26,8 +26,8 @@ jobs:
       - name: Run the spec N times
         uses: cypress-io/github-action@v3
         with:
-          start: { { github.event.inputs.start-command } }
+          start: ${{ github.event.inputs.start-command }}
           wait-on: 'http://localhost:3000'
-          project: { { github.event.inputs.project-directory } }
+          project: ${{ github.event.inputs.project-directory }}
           browser: chrome
           env: 'grep="${{ github.event.inputs.title }}",burn=${{ github.event.inputs.n }}'
