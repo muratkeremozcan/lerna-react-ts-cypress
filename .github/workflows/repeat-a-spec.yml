@@ -1,5 +1,4 @@
 name: call repeat spec for app-a
-
 on:
   workflow_dispatch:
     description: Lets the user run a spec file N times in a row
@@ -15,7 +14,7 @@ on:
         type: integer
 
 jobs:
-  call-repeat-spec:
+  call_repeat_spec:
     uses: ./.github/workflows/repeat-spec-called.yml
     with:
       start-command: yarn start:a
