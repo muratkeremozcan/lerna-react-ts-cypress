@@ -1,4 +1,4 @@
-name: call repeat spec for app-a
+name: repeat-a-spec
 on:
   workflow_dispatch:
     description: Lets the user run a spec file N times in a row
