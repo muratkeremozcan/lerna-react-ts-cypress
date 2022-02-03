@@ -1,6 +1,4 @@
-# https://github.com/bahmutov/test-todomvc-using-app-actions/blob/master/.github/workflows/repeat-test.yml
-
-name: repeat-a-tag
+name: repeat-a-tag-caller
 on:
   workflow_dispatch:
     description: Lets the user run a spec file N times in a row

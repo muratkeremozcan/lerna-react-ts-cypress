@@ -1,0 +1,23 @@
+name: repeat-a-spec-caller
+on:
+  workflow_dispatch:
+    description: Lets the user run a spec file N times in a row
+    inputs:
+      title:
+        description: any string in a describe or it block
+        required: true
+        type: string
+      times:
+        description: number of times to repeat the test
+        required: false
+        default: 1
+        type: integer
+
+jobs:
+  call_repeat_spec:
+    uses: ./.github/workflows/repeat-spec-called.yml
+    with:
+      start-command: 'yarn start:a'
+      project-directory: './packages/app-a'
+      title: ${{ github.event.inputs.title }}
+      times: ${{ github.event.inputs.times }}

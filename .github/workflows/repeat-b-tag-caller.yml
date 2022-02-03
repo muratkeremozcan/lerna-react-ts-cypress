@@ -1,0 +1,25 @@
+name: repeat-b-tag-caller
+on:
+  workflow_dispatch:
+    description: Lets the user run a spec file N times in a row
+    inputs:
+      tag:
+        description: Tag to run
+        required: true
+        type: choice
+        options:
+          - '@b'
+      times:
+        description: Number of times to repeat the test
+        required: false
+        default: 1
+        type: integer
+
+jobs:
+  call_repeat_tag:
+    uses: ./.github/workflows/repeat-tag-called.yml
+    with:
+      start-command: 'yarn start:b'
+      project-directory: './packages/app-b'
+      tag: ${{ github.event.inputs.tag }}
+      times: ${{ github.event.inputs.times }}
