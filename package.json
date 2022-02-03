@@ -16,6 +16,7 @@
     "@typescript-eslint/parser": "4.31.1",
     "cross-env": "7.0.3",
     "cypress": "9.4.1",
+    "cypress-grep": "^2.13.1",
     "debug": "4.3.2",
     "eslint": "7.32.0",
     "eslint-plugin-cypress": "2.12.1",
@@ -41,5 +42,16 @@
     "test:ci-c": "server-test start:c 3000 cy:run-c",
     "lint": "eslint --ext=.js,.ts,.tsx packages",
     "typecheck": "tsc --noEmit"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "no-unused-expressions": "off",
+      "no-undef": "off",
+      "jest/valid-describe": "off"
+    }
   }
 }

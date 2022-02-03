@@ -1,0 +1,40 @@
+# https://github.com/bahmutov/test-todomvc-using-app-actions/blob/master/.github/workflows/repeat-test.yml
+
+name: repeat-b-tag
+on:
+  workflow_dispatch:
+    description: Lets the user run a spec file N times in a row
+    inputs:
+      tag:
+        description: Tag to run
+        required: true
+        type: choice
+        options:
+          - '@b'
+      n:
+        description: Number of times to repeat the test
+        required: false
+        default: 1
+        type: integer
+
+jobs:
+  repeat-b-tag:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Print workflow inputs
+        run: |
+          echo Running tests with tag: ${{ github.event.inputs.tag }}
+          echo for ${{ github.event.inputs.n }} times
+
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run the spec N times
+        uses: cypress-io/github-action@v3
+        with:
+          start: yarn start:b
+          wait-on: 'http://localhost:3000'
+          project: ./packages/app-b
+          browser: chrome
+          env: 'grepTags=${{ github.event.inputs.tag }},burn=${{ github.event.inputs.n }},grepFilterSpecs=true,grepOmitFiltered=true'
