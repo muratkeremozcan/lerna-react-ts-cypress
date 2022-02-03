@@ -14,7 +14,7 @@ on:
         type: string
       times:
         required: true
-        type: integer
+        type: string
 
 jobs:
   repeat_spec:
