@@ -1,6 +1,6 @@
-describe('app-b', () => {
-  it('passes sanity', () => {
-    cy.visit('/');
-    cy.contains('This is app-b.');
+describe('app-b', { tags: 'b' }, () => {
+  it('passes sanity', { tags: 'b' }, () => {
+    cy.visit('/')
+    cy.contains('This is app-b.')
   })
 })

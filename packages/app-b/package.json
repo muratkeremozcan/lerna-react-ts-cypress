@@ -28,7 +28,12 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-unused-expressions": "off",
+      "no-undef": "off",
+      "jest/valid-describe": "off"
+    }
   },
   "browserslist": {
     "production": [

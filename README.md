@@ -102,3 +102,15 @@ Monorepo examples: [Jannik Buschke's blog](https://www.jannikbuschke.de/blog/mon
 [Gleb's monorepo CI blog](https://glebbahmutov.com/blog/test-monorepo-apps/)
 
 [Cypress example recipes repo](https://github.com/cypress-io/cypress/tree/develop/packages)
+
+## cypress-grep cheat sheet
+
+```bash
+# note: can use run or open
+# with lerna, use triple -- to pass a cmd line arg
+
+# strings
+yarn cy:run-a -- -- --env grep=app-a,grepFilterSpecs=true,grepOmitFiltered=true     
+yarn cy:run-a -- -- --env grepTags=a,grepFilterSpecs=true,grepOmitFiltered=true     
+
+```

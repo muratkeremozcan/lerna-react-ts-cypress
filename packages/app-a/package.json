@@ -22,13 +22,18 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cypress:open": "../../node_modules/.bin/cypress open",
-    "cypress:run": "../../node_modules/.bin/cypress run"
+    "cypress:run": "../../node_modules/.bin/cypress run --env grep=app-a"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-unused-expressions": "off",
+      "no-undef": "off",
+      "jest/valid-describe": "off"
+    }
   },
   "browserslist": {
     "production": [

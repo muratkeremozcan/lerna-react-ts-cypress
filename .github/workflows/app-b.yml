@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-          
+
       # run tests against app-*
       # wait for app-* to be served before starting the tests
       # run tests against packages/app-* folder
@@ -22,9 +22,7 @@ jobs:
           start: yarn start:b
           wait-on: 'http://localhost:3000'
           project: ./packages/app-b
+          browser: chrome
           record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          
-          
-

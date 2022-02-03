@@ -16,6 +16,7 @@
     "@typescript-eslint/parser": "4.31.1",
     "cross-env": "7.0.3",
     "cypress": "9.4.1",
+    "cypress-grep": "^2.13.1",
     "debug": "4.3.2",
     "eslint": "7.32.0",
     "eslint-plugin-cypress": "2.12.1",
@@ -34,6 +35,7 @@
     "cy:open-b": "lerna run cypress:open --stream --scope app-b",
     "cy:open-c": "lerna run cypress:open --stream --scope app-c",
     "cy:run-a": "lerna run cypress:run --stream --scope app-a",
+    "cy:run-a-grep": "lerna run cypress:open --stream --scope app-a",
     "cy:run-b": "lerna run cypress:run --stream --scope app-b",
     "cy:run-c": "lerna run cypress:run --stream --scope app-c",
     "test:ci-a": "server-test start:a 3000 cy:run-a",
@@ -41,5 +43,16 @@
     "test:ci-c": "server-test start:c 3000 cy:run-c",
     "lint": "eslint --ext=.js,.ts,.tsx packages",
     "typecheck": "tsc --noEmit"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "no-unused-expressions": "off",
+      "no-undef": "off",
+      "jest/valid-describe": "off"
+    }
   }
 }
