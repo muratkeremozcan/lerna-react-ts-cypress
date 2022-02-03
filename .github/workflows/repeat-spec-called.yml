@@ -15,7 +15,7 @@ on:
       times:
         required: false
         default: 1
-        type: number
+        type: number # yup, not integer, crazy GHA!!
 
 jobs:
   repeat_spec:
