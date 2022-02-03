@@ -9,6 +9,13 @@ on:
       project-directory:
         required: true
         type: string
+      title:
+        required: true
+        type: string
+      n:
+        required: false
+        default: 1
+        type: integer
 
 jobs:
   repeat_spec:
@@ -16,8 +23,8 @@ jobs:
     steps:
       - name: Print workflow inputs
         run: |
-          echo Running with start-command: ${{ github.event.inputs.start-command }}
-          echo On project directory: ${{ github.event.inputs.project-directory }}
+          echo Running with start-command: ${{ inputs.start-command }}
+          echo On project directory: ${{ inputs.project-directory }}
 
       - name: Checkout 🛎
         uses: actions/checkout@v2
@@ -26,8 +33,8 @@ jobs:
       - name: Run the spec N times
         uses: cypress-io/github-action@v3
         with:
-          start: ${{ github.event.inputs.start-command }}
+          start: ${{ inputs.start-command }}
           wait-on: 'http://localhost:3000'
-          project: ${{ github.event.inputs.project-directory }}
+          project: ${{ inputs.project-directory }}
           browser: chrome
-          env: 'grep="${{ github.event.inputs.title }}",burn=${{ github.event.inputs.n }}'
+          env: 'grep="${{ inputs.title }}",burn=${{ inputs.n }}'
