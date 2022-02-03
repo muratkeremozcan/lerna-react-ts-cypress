@@ -12,9 +12,9 @@ on:
       title:
         required: true
         type: string
-      n:
-        required: false
-        type: integer
+      # n:
+      #   required: false
+      #   type: integer
 
 jobs:
   repeat_spec:
@@ -36,4 +36,5 @@ jobs:
           wait-on: 'http://localhost:3000'
           project: ${{ inputs.project-directory }}
           browser: chrome
-          env: 'grep="${{ inputs.title }}",burn=${{ inputs.n }}'
+          env: 'grep="${{ inputs.title }}",burn=3'
+          # env: 'grep="${{ inputs.title }}",burn=${{ inputs.n }}'
