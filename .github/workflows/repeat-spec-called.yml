@@ -15,7 +15,7 @@ on:
       times:
         required: false
         default: 1
-        type: integer
+        type: number
 
 jobs:
   repeat_spec:
