@@ -1,4 +1,4 @@
-name: repeat-spec-called
+name: repeat-tag-called
 
 on:
   workflow_call:
@@ -9,39 +9,33 @@ on:
       project-directory:
         required: true
         type: string
-      title:
+      tags:
         required: true
         type: string
       times:
         required: false
-        type: string # yup, this is the only way it works, has to be string crazy GHA!!
-        # documentation says it's either boolean, number or string
-        # https://docs.github.com/en/actions/using-workflows/reusing-workflows
-        # crazy error when it's integer
-        # https://github.com/muratkeremozcan/lerna-react-ts-cypress/actions/runs/1790612770
-        # cryptic error when it's number
-        # https://github.com/muratkeremozcan/lerna-react-ts-cypress/actions/runs/1790592085
+        type: string
 
 jobs:
-  repeat_spec:
+  repeat_tag:
     runs-on: ubuntu-20.04
     steps:
       - name: Print workflow inputs
         run: |
           echo Running with start-command: ${{ inputs.start-command }}
           echo On project directory: ${{ inputs.project-directory }}
-          echo With title: ${{ inputs.title }}
+          echo With tag: ${{ inputs.tags }}
           echo For ${{ inputs.times }} times
 
       - name: Checkout 🛎
         uses: actions/checkout@v2
 
       # https://github.com/cypress-io/github-action
-      - name: Run the spec N times
+      - name: Run the tag N times
         uses: cypress-io/github-action@v3
         with:
           start: ${{ inputs.start-command }}
           wait-on: 'http://localhost:3000'
           project: ${{ inputs.project-directory }}
           browser: chrome
-          env: 'grep="${{ inputs.title }}",burn=${{ inputs.times }}'
+          env: 'grepTags="${{ inputs.tags }}",burn=${{ inputs.times }}'

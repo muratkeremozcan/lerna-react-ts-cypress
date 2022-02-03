@@ -12,30 +12,38 @@ on:
         options:
           - '@a'
           - '@2'
-      n:
+      times:
         description: Number of times to repeat the test
         required: false
         default: 1
         type: integer
 
 jobs:
-  repeat-a-tag:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Print workflow inputs
-        run: |
-          echo Running tests with tag: ${{ github.event.inputs.tag }}
-          echo for ${{ github.event.inputs.n }} times
+  call_repeat_tag:
+    uses: ./.github/workflows/repeat-tag-called.yml
+    with:
+      start-command: 'yarn start:a'
+      project-directory: './packages/app-a'
+      title: ${{ github.event.inputs.tag }}
+      times: ${{ github.event.inputs.times }}
 
-      - name: Checkout 🛎
-        uses: actions/checkout@v2
+  # repeat-a-tag:
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - name: Print workflow inputs
+  #       run: |
+  #         echo Running tests with tag: ${{ github.event.inputs.tag }}
+  #         echo for ${{ github.event.inputs.n }} times
 
-      # https://github.com/cypress-io/github-action
-      - name: Run the spec N times
-        uses: cypress-io/github-action@v3
-        with:
-          start: yarn start:a
-          wait-on: 'http://localhost:3000'
-          project: ./packages/app-a
-          browser: chrome
-          env: 'grepTags=${{ github.event.inputs.tag }},burn=${{ github.event.inputs.n }}'
+  #     - name: Checkout 🛎
+  #       uses: actions/checkout@v2
+
+  #     # https://github.com/cypress-io/github-action
+  #     - name: Run the spec N times
+  #       uses: cypress-io/github-action@v3
+  #       with:
+  #         start: yarn start:a
+  #         wait-on: 'http://localhost:3000'
+  #         project: ./packages/app-a
+  #         browser: chrome
+  #         env: 'grepTags=${{ github.event.inputs.tag }},burn=${{ github.event.inputs.n }}'
