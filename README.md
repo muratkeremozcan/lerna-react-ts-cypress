@@ -117,3 +117,23 @@ yarn cy:run-a -- -- --env grep="grep test spec"
 yarn cy:run-a -- -- --env grepTags="@2"
 
 ```
+
+## Reusable workflows
+
+A while after this repo got created, GHA came up with [reusable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows).
+
+There are 2 called worfklows for test burning.
+
+There are two pairs of caller workflows for app-a and app-b, using the called workflows:
+
+1. `.github/workflows/repeat-spec-called.yml` 
+  * `.github/workflows/repeat-a-spec-caller.yml`
+  * `.github/workflows/repeat-b-spec-caller.yml`
+
+2. `.github/workflows/repeat-tag-called.yml`
+  * `.github/workflows/repeat-a-tag-caller.yml`
+  * `.github/workflows/repeat-b-tag-caller.yml`
+
+The original test burners for app-c have been left in place for comparison
+  * `.github/workflows/repeat-c-spec.yml`
+  * `.github/workflows/repeat-c-tag.yml`
