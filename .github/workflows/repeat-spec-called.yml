@@ -14,7 +14,7 @@ on:
         type: string
       times:
         required: false
-        type: string # yup, this is the only way it works, crazy GHA!!
+        type: number # yup, this is the only way it works, crazy GHA!!
 
 jobs:
   repeat_spec:
