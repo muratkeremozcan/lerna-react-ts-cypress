@@ -12,9 +12,9 @@ on:
       title:
         required: true
         type: string
-      # n:
-      #   required: false
-      #   type: integer
+      times:
+        required: true
+        type: integer
 
 jobs:
   repeat_spec:
@@ -24,6 +24,7 @@ jobs:
         run: |
           echo Running with start-command: ${{ inputs.start-command }}
           echo On project directory: ${{ inputs.project-directory }}
+          echo With title: ${{ inputs.title }}
 
       - name: Checkout 🛎
         uses: actions/checkout@v2
@@ -36,5 +37,4 @@ jobs:
           wait-on: 'http://localhost:3000'
           project: ${{ inputs.project-directory }}
           browser: chrome
-          env: 'grep="${{ inputs.title }}",burn=3'
-          # env: 'grep="${{ inputs.title }}",burn=${{ inputs.n }}'
+          env: 'grep="${{ inputs.title }}",burn=${{ inputs.times }}'
