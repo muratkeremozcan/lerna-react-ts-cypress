@@ -16,7 +16,7 @@ on:
         type: integer
 
 jobs:
-  repeat-b-spec:
+  repeat-c-spec:
     runs-on: ubuntu-20.04
     steps:
       - name: Print workflow inputs
@@ -31,8 +31,8 @@ jobs:
       - name: Run the spec N times
         uses: cypress-io/github-action@v3
         with:
-          start: yarn start:b
+          start: yarn start:c
           wait-on: 'http://localhost:3000'
-          project: ./packages/app-b
+          project: ./packages/app-c
           browser: chrome
           env: 'grep="${{ github.event.inputs.title }}",burn=${{ github.event.inputs.n }}'
