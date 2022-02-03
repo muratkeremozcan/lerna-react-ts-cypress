@@ -35,7 +35,6 @@
     "cy:open-b": "lerna run cypress:open --stream --scope app-b",
     "cy:open-c": "lerna run cypress:open --stream --scope app-c",
     "cy:run-a": "lerna run cypress:run --stream --scope app-a",
-    "cy:run-a-grep": "lerna run cypress:open --stream --scope app-a",
     "cy:run-b": "lerna run cypress:run --stream --scope app-b",
     "cy:run-c": "lerna run cypress:run --stream --scope app-c",
     "test:ci-a": "server-test start:a 3000 cy:run-a",
