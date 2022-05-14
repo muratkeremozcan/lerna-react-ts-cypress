@@ -1,17 +1,31 @@
 name: app-b
 on:
   push:
-    # only run when app-* changes, or in this workflow file changes, or package.json changes
-    paths:
-      - 'packages/app-b/**'
-      - .github/workflows/app-b.yml
-      - package.json
 
 jobs:
-  test:
+  files-changed:
+    name: Determine if files changed
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with: 
+          filters: |
+            src: 
+              - packages/app-c/**
+              - .github/workflows/app-c.yml
+              - package.json
+    outputs:
+      filesChanged: ${{ steps.changes.outputs.src }}
+
+  test:
+    needs: [files-changed]
+    if: needs.files-changed.outputs.filesChanged == 'true'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
 
       # run tests against app-*
       # wait for app-* to be served before starting the tests

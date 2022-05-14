@@ -1,11 +1,6 @@
 name: app-a
 on:
   push:
-    # only run when app-* changes, or in this workflow file changes, or package.json changes
-    paths:
-      - 'packages/app-a/**'
-      - .github/workflows/app-a.yml
-      - package.json
 
   workflow_dispatch:
     inputs:
@@ -14,14 +9,33 @@ on:
         required: true
 
 jobs:
+  files-changed:
+    name: Determine if files changed
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with: 
+          filters: |
+            src: 
+              - packages/app-c/**
+              - .github/workflows/app-c.yml
+              - package.json
+    outputs:
+      filesChanged: ${{ steps.changes.outputs.src }}
+
   test:
     runs-on: ubuntu-20.04
+    needs: [files-changed]
+    if: needs.files-changed.outputs.filesChanged == 'true'
     env:
       # we add custom variables to the environment
       EVENT_NAME: ${{ github.event_name }} # helps identify if this is a push or dispatch
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # our custom step which figures out what environment the CI is in
       # if this is a workflow dispatch we set a custom variable ENVIRONMENT

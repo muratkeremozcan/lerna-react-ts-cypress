@@ -1,17 +1,44 @@
 name: app-c
 on:
   push:
-    # only run when app-* changes, or in this workflow file changes, or package.json changes
-    paths:
-      - 'packages/app-c/**'
-      - .github/workflows/app-c.yml
-      - package.json
+    # uses conditional execution instead of push/paths, so that in a monorepo we can have branch protection on optional jobs
+
+    # paths:
+    #   - 'packages/app-c/**'
+    #   - .github/workflows/app-c.yml
+    #   - package.json
 
 jobs:
-  test:
+  files-changed:
+    name: Determine if files changed
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
+      # https://github.com/dorny/paths-filter
+      # GitHub Action that enables conditional execution of workflow steps and jobs, 
+      # based on the files modified by pull request, on a feature branch, or by the recently pushed commits.
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with: 
+          # we copy the push/paths to here instead
+          filters: |
+            src: 
+              - packages/app-c/**
+              - .github/workflows/app-c.yml
+              - package.json
+    # This will set steps.changes.outputs.src to true or false depending on if these files match.
+    outputs:
+      filesChanged: ${{ steps.changes.outputs.src }}
+
+  test:
+    # make sure this step runs after the check for files changed
+    needs: [files-changed]
+    # only run this step if filesChanged 
+    if: needs.files-changed.outputs.filesChanged == 'true'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
 
       # run tests against app-*
       # wait for app-* to be served before starting the tests
