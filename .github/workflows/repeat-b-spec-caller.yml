@@ -10,8 +10,8 @@ on:
       times:
         description: number of times to repeat the test
         required: false
-        default: 1
-        type: integer
+        default: '1'
+        type: string
 
 jobs:
   call_repeat_spec:
