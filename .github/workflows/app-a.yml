@@ -20,7 +20,7 @@ jobs:
         with: 
           filters: |
             src: 
-              - packages/app-c/**
+              - packages/app-a/**
               - .github/workflows/app-c.yml
               - package.json
     outputs:
