@@ -1,6 +1,6 @@
 describe('grep test spec', { tags: '@2' }, () => {
   it('passes sanity', () => {
     cy.visit('/')
-    cy.contains('NOTHING')
+    cy.contains('This is app-a.')
   })
 })
