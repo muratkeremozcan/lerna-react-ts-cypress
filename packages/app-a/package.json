@@ -22,7 +22,8 @@
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cypress:open": "../../node_modules/.bin/cypress open",
-    "cypress:run": "../../node_modules/.bin/cypress run --env grep=app-a"
+    "cypress:run": "../../node_modules/.bin/cypress run --env grep=app-a",
+    "cypress:open-a-tests-with-b-config": "../../node_modules/.bin/cypress open --config-file ../app-b/cypress.json"
   },
   "eslintConfig": {
     "extends": [

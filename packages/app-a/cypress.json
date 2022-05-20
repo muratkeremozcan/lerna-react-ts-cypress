@@ -3,6 +3,7 @@
   "projectId": "6v2c2y",
   "env": {
     "grepFilterSpecs": true,
-    "grepOmitFiltered": true
+    "grepOmitFiltered": true,
+    "URL_TEST": "https://www.google.com"
   }
 }

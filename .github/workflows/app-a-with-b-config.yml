@@ -1,0 +1,65 @@
+name: app-a-with-b-config
+on:
+  push:
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'run against an environment (localhost for now)'
+        required: true
+
+jobs:
+  files-changed:
+    name: Determine if files changed
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with: 
+          filters: |
+            src: 
+              - packages/app-a/**
+              - .github/workflows/app-c.yml
+              - package.json
+    outputs:
+      filesChanged: ${{ steps.changes.outputs.src }}
+
+  test:
+    runs-on: ubuntu-20.04
+    needs: [files-changed]
+    if: needs.files-changed.outputs.filesChanged == 'true'
+    env:
+      # we add custom variables to the environment
+      EVENT_NAME: ${{ github.event_name }} # helps identify if this is a push or dispatch
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # our custom step which figures out what environment the CI is in
+      # if this is a workflow dispatch we set a custom variable ENVIRONMENT
+      # with the value of what is entered in GitHub UI: localhost, or wrong text
+      - name: Set environment variable
+        run: |
+          case $EVENT_NAME in
+            workflow_dispatch)
+              ENVIRONMENT=${{ github.event.inputs.environment }}
+              ;;          
+          esac
+
+          echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_ENV
+
+      # run tests against app-*
+      # wait for app-* to be served before starting the tests
+      # run tests against packages/app-* folder
+      - name: Cypress tests 🧪 on ${{ env.ENVIRONMENT }}
+        uses: cypress-io/github-action@v3.0.6
+        with:
+          start: yarn start:a
+          wait-on: 'http://localhost:3000'
+          project: ./packages/app-a
+          browser: chrome
+          record: false
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
