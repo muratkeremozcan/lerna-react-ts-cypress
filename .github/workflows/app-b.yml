@@ -29,7 +29,7 @@ jobs:
           #   echo ${{ env.COMMIT_MSG }}
           #   echo "baseUrl=something worked" >> $GITHUB_ENV
         run: |
-          if [[ $COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]] ; then
+          if [[ ${{ env.COMMIT_MSG }} =~ ${{ env.BASEURL_REGEX }} ]] ; then
             echo "something else worked"
           else
             echo "baseUrl not specified, using the config file"
