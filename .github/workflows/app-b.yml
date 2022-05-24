@@ -23,8 +23,9 @@ jobs:
         # It does the same if the variable is false.
         # Setting an environment variable 
         # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
+          # if [[ ${BASE_URL_EXISTS} == true && COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]]; then
         run: |
-          if [[ ${BASE_URL_EXISTS} == true && COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]]; then
+          if [[ ${BASE_URL_EXISTS} == true ]]; then
             echo "baseUrl=something worked" >> $GITHUB_ENV
           else
             echo "baseUrl not specified, using the config file"
