@@ -22,6 +22,8 @@ jobs:
         # The run command here checks to see if the BASE_URLvariable has been set to true,
         # and if it has, it sets a secondary flag to true, and echoes this behavior. 
         # It does the same if the variable is false.
+        # Setting an environment variable 
+        # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
         run: |
           if ${BASE_URL} == true; then
             echo "baseUrl=${{ env.BASEURL_REGEX }}" >> $GITHUB_ENV
@@ -33,13 +35,6 @@ jobs:
       - name: "Output the baseUrl"
         if: env.baseUrl
         run: echo "baseUrl is ${{ env.baseUrl }}"
-
-      # Setting an environment variable 
-      # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
-      # - name: Set env 
-      #   run: echo "baseUrl=http://localhost:3000" >> $GITHUB_ENV
-      # - name: Test
-      #   run: echo "BaseUrl is ${{ env.baseUrl }}"
 
   files-changed:
     name: Determine if files changed
