@@ -18,15 +18,13 @@ jobs:
           BASE_URL_EXISTS: ${{ contains(github.event.head_commit.message, 'baseUrl=') }}
           BASEURL_REGEX: '(http:\/\/|https:\/\/)?[^\/\?]*$'
           COMMIT_MSG: "$(git log --oneline -1)"
-        # The run command here checks to see if the BASE_URL_EXISTSvariable has been set to true,
-        # and if it has, it sets a secondary flag to true, and echoes this behavior. 
-        # It does the same if the variable is false.
-        # Setting an environment variable 
-        # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
-  
+        # The run command here checks to see if the BASE_URL_EXISTS variable has been set to true, and there is a regex match in the commit message.
+        # If yes, the regex match is set as the baseUrl. Remember setting an environment variable:  echo "{environment_variable_name}={value}" >> $GITHUB_ENV  
+        # you can test with https://www.onlinegdb.com/online_bash_shell
         run: |
           if [[ ${BASE_URL_EXISTS} == true ]] && [[ ${{ env.COMMIT_MSG }} =~ ${{ env.BASEURL_REGEX }} ]] ; then
-            echo "something great worked"
+            echo "setting baseUrl environment variable"
+            echo "baseUrl=${BASH_REMATCH[0]" >> $GITHUB_ENV
           else
             echo "baseUrl not specified, using the config file"
           fi
