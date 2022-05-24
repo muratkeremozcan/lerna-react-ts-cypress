@@ -16,7 +16,7 @@ jobs:
         # The ${{...}} is necessary to use the GitHub Context and make the functions and github.event variables available for the command.
         env:
           BASE_URL_EXISTS: ${{ contains(github.event.head_commit.message, 'baseUrl=') }}
-          BASEURL_REGEX: /(http:\/\/|https:\/\/)?[^\/\?]*$/gm
+          BASEURL_REGEX: '(http:\/\/|https:\/\/)?[^\/\?]*$'
           COMMIT_MSG: "$(git log --oneline -1)"
         # The run command here checks to see if the BASE_URL_EXISTSvariable has been set to true,
         # and if it has, it sets a secondary flag to true, and echoes this behavior. 
@@ -30,7 +30,7 @@ jobs:
           #   echo ${{ env.COMMIT_MSG }}
           #   echo "baseUrl=something worked" >> $GITHUB_ENV
         run: |
-          if [[ env.COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]] ; then
+          if [[ ${{ env.COMMIT_MSG }} =~ ${{ env.BASEURL_REGEX }} ]] ; then
             echo "something else worked"
           else
             echo "baseUrl not specified, using the config file"
