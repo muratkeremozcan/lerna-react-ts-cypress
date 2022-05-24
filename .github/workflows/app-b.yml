@@ -18,7 +18,7 @@ jobs:
         # The ${{...}} is necessary to use the GitHub Context and make the functions and github.event variables available for the command.
         env:
           BASEURL_REGEX: \[baseUrl=\s*([A-Za-z0-9]+-[0-9]+)\s*\]
-          BASE_URL: ${{ contains(github.event.head_commit.message, '[baseUrl=]') }}
+          BASE_URL: ${{ contains(github.event.head_commit.message, 'baseUrl') }}
         # The run command here checks to see if the BASE_URLvariable has been set to true,
         # and if it has, it sets a secondary flag to true, and echoes this behavior. 
         # It does the same if the variable is false.
