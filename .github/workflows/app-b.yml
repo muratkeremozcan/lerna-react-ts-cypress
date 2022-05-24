@@ -47,7 +47,7 @@ jobs:
           filters: |
             src: 
               - packages/app-b/**
-              - .github/workflows/app-c.yml
+              - .github/workflows/app-b.yml
               - package.json
     outputs:
       filesChanged: ${{ steps.changes.outputs.src }}
