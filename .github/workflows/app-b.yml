@@ -25,7 +25,7 @@ jobs:
         run: |
           if [[ ${BASE_URL_EXISTS} == true ]] && [[ ${{ env.COMMIT_MSG }} =~ ${{ env.BASEURL_REGEX }} ]] ; then
             echo "setting baseUrl environment variable"
-            echo baseUrl=${BASH_REMATCH[0] >> $GITHUB_ENV
+            echo baseUrl=${BASH_REMATCH[0]} >> $GITHUB_ENV
           else
             echo "baseUrl not specified, using the config file"
           fi
