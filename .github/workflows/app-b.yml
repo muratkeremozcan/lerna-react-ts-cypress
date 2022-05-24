@@ -2,6 +2,7 @@ name: app-b
 on:
   push:
 
+
 jobs:
   #  the key is BASE_URL and the value is [baseUrl]
   # https://microsoft.github.io/code-with-engineering-playbook/continuous-delivery/devops-provider-recipes/github-actions/runtime-variables/runtime-variables/
