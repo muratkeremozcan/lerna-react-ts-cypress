@@ -24,13 +24,13 @@ jobs:
         # Setting an environment variable 
         # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
           # if [[ ${BASE_URL_EXISTS} == true && COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]]; then
-        run: |
-          if ${BASE_URL_EXISTS} == true; then
-            echo ${{ env.COMMIT_MSG }}
-            echo "baseUrl=something worked" >> $GITHUB_ENV
 
-            if [[ $COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]] ; then
-              echo "something else worked"
+          # if ${BASE_URL_EXISTS} == true; then
+          #   echo ${{ env.COMMIT_MSG }}
+          #   echo "baseUrl=something worked" >> $GITHUB_ENV
+        run: |
+          if [[ $COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ]] ; then
+            echo "something else worked"
           else
             echo "baseUrl not specified, using the config file"
           fi
