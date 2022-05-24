@@ -4,7 +4,6 @@ on:
 
 
 jobs:
-  #  the key is BASE_URL and the value is [baseUrl]
   # https://microsoft.github.io/code-with-engineering-playbook/continuous-delivery/devops-provider-recipes/github-actions/runtime-variables/runtime-variables/
   Echo-On-Commit:
     runs-on: ubuntu-latest
@@ -17,20 +16,22 @@ jobs:
         # Here, it checks to see if the commit message on the last push, accessed using github.event.head_commit.message. 
         # The ${{...}} is necessary to use the GitHub Context and make the functions and github.event variables available for the command.
         env:
-          BASEURL_REGEX: \[baseUrl=\s*([A-Za-z0-9]+-[0-9]+)\s*\]
-          BASE_URL: ${{ contains(github.event.head_commit.message, 'baseUrl') }}
-        # The run command here checks to see if the BASE_URLvariable has been set to true,
+          BASE_URL_EXISTS: ${{ contains(github.event.head_commit.message, 'baseUrl') }}
+          BASEURL_REGEX: /(http:\/\/|https:\/\/)?[^\/\?]*$/gm
+          COMMIT_MSG: "$(git log --oneline -1)"
+        # The run command here checks to see if the BASE_URL_EXISTSvariable has been set to true,
         # and if it has, it sets a secondary flag to true, and echoes this behavior. 
         # It does the same if the variable is false.
         # Setting an environment variable 
         # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
         run: |
-          if ${BASE_URL} == true; then
-            echo "baseUrl=${{ env.BASEURL_REGEX }}" >> $GITHUB_ENV
+          if ${BASE_URL_EXISTS} == true && COMMIT_MSG =~ ${{ env.BASEURL_REGEX }} ; then
+
+            echo "baseUrl=something worked" >> $GITHUB_ENV
           else
             echo "baseUrl not specified, using the config file"
           fi
-      # The specific reason to do this is to allow for the flag variable to be used in further steps instead of having to reuse the BASE_URL in every step. 
+      # The specific reason to do this is to allow for the flag variable to be used in further steps instead of having to reuse the BASE_URL_EXISTS in every step. 
       # Further, it allows for the flag to be used in the if step of an action, as in the next part of the snippet.
       - name: "Output the baseUrl"
         if: env.baseUrl
