@@ -1,6 +1,6 @@
 name: app-b
 on:
-  push:
+  push: 
 
 jobs:
   # https://microsoft.github.io/code-with-engineering-playbook/continuous-delivery/devops-provider-recipes/github-actions/runtime-variables/runtime-variables/
@@ -29,8 +29,6 @@ jobs:
           else
             echo "baseUrl not specified, using the config file"
           fi
-      # The specific reason to do this is to allow for the flag variable to be used in further steps instead of having to reuse the BASE_URL_EXISTS in every step. 
-      # Further, it allows for the flag to be used in the if step of an action, as in the next part of the snippet.
       - name: "Output the baseUrl"
         if: env.baseUrl
         run: echo "baseUrl is ${{ env.baseUrl }}"
@@ -58,10 +56,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-
-      - name: "In a different job"
-        if: env.baseUrl
-        run: echo "baseUrl is ${{ env.baseUrl }}"
 
       # run tests against app-*
       # wait for app-* to be served before starting the tests
