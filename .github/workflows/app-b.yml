@@ -38,9 +38,9 @@ jobs:
       # Setting an environment variable 
       # echo "{environment_variable_name}={value}" >> $GITHUB_ENV
       - name: Set env 
-        run: echo "BASE_URL='HELLO YO'" >> $GITHUB_ENV
+        run: echo "baseUrl=http://localhost:3000" >> $GITHUB_ENV
       - name: Test
-        run: echo $BASE_URL
+        run: echo "BaseUrl is ${{ env.baseUrl }}"
 
   files-changed:
     name: Determine if files changed
