@@ -59,6 +59,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: "In a different job"
+        if: env.baseUrl
+        run: echo "baseUrl is ${{ env.baseUrl }}"
+
       # run tests against app-*
       # wait for app-* to be served before starting the tests
       # run tests against packages/app-* folder
