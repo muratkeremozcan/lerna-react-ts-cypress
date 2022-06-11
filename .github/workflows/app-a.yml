@@ -54,7 +54,7 @@ jobs:
       # wait for app-* to be served before starting the tests
       # run tests against packages/app-* folder
       - name: Cypress tests 🧪 on ${{ env.ENVIRONMENT }}
-        uses: cypress-io/github-action@v4.0.1
+        uses: cypress-io/github-action@v4.1.0
         with:
           start: yarn start:a
           wait-on: 'http://localhost:3000'
