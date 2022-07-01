@@ -1,27 +1,27 @@
 name: app-b
 on:
-  push: 
+  push:
 
 jobs:
   # https://microsoft.github.io/code-with-engineering-playbook/continuous-delivery/devops-provider-recipes/github-actions/runtime-variables/runtime-variables/
   Echo-On-Commit:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout Repository"
+      - name: 'Checkout Repository'
         uses: actions/checkout@v2
 
-      - name: "Set an environment variable"
-        # contains is a GitHub Actions function that is available by default in all workflows. It returns a Boolean true or false value. 
-        # Here, it checks to see if the commit message on the last push, accessed using github.event.head_commit.message. 
+      - name: 'Set an environment variable'
+        # contains is a GitHub Actions function that is available by default in all workflows. It returns a Boolean true or false value.
+        # Here, it checks to see if the commit message on the last push, accessed using github.event.head_commit.message.
         # The ${{...}} is necessary to use the GitHub Context and make the functions and github.event variables available for the command.
         env:
           BASE_URL_EXISTS: ${{ contains(github.event.head_commit.message, 'baseUrl=') }}
           BASEURL_REGEX: '(http:\/\/|https:\/\/)?[^\/\?]*$'
-          COMMIT_MSG: "$(git log --oneline -1)"
+          COMMIT_MSG: '$(git log --oneline -1)'
         # The run command here checks to see if the BASE_URL_EXISTS variable has been set to true, and there is a regex match in the commit message.
-        # If yes, the regex match is set as the baseUrl. Remember setting an environment variable:  echo environment_variable_name=value >> $GITHUB_ENV  
+        # If yes, the regex match is set as the baseUrl. Remember setting an environment variable:  echo environment_variable_name=value >> $GITHUB_ENV
         # you can test with https://www.onlinegdb.com/online_bash_shell
-            # echo baseUrl=${BASH_REMATCH[0] >> $GITHUB_ENV
+        # echo baseUrl=${BASH_REMATCH[0] >> $GITHUB_ENV
         run: |
           if [[ ${BASE_URL_EXISTS} == true ]] && [[ ${{ env.COMMIT_MSG }} =~ ${{ env.BASEURL_REGEX }} ]] ; then
             echo "setting baseUrl environment variable"
@@ -29,7 +29,7 @@ jobs:
           else
             echo "baseUrl not specified, using the config file"
           fi
-      - name: "Output the baseUrl"
+      - name: 'Output the baseUrl'
         if: env.baseUrl
         run: echo "baseUrl is ${{ env.baseUrl }}"
 
@@ -41,7 +41,7 @@ jobs:
 
       - uses: dorny/paths-filter@v2
         id: changes
-        with: 
+        with:
           filters: |
             src: 
               - packages/app-b/**
@@ -61,7 +61,7 @@ jobs:
       # wait for app-* to be served before starting the tests
       # run tests against packages/app-* folder
       - name: Cypress tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4.1.1
         with:
           start: yarn start:b
           wait-on: 'http://localhost:3000'
