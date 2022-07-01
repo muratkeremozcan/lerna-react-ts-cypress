@@ -16,11 +16,11 @@ jobs:
       - uses: actions/checkout@v3
 
       # https://github.com/dorny/paths-filter
-      # GitHub Action that enables conditional execution of workflow steps and jobs, 
+      # GitHub Action that enables conditional execution of workflow steps and jobs,
       # based on the files modified by pull request, on a feature branch, or by the recently pushed commits.
       - uses: dorny/paths-filter@v2
         id: changes
-        with: 
+        with:
           # we copy the push/paths to here instead
           filters: |
             src: 
@@ -34,7 +34,7 @@ jobs:
   test:
     # make sure this step runs after the check for files changed
     needs: [files-changed]
-    # only run this step if filesChanged 
+    # only run this step if filesChanged
     if: needs.files-changed.outputs.filesChanged == 'true'
     runs-on: ubuntu-20.04
     steps:
@@ -44,7 +44,7 @@ jobs:
       # wait for app-* to be served before starting the tests
       # run tests against packages/app-* folder
       - name: Cypress tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4.1.1
         with:
           start: yarn start:c
           wait-on: 'http://localhost:3000'

@@ -1,8 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "projectId": "6v2c2y",
-  "env": {
-    "grepFilterSpecs": true,
-    "grepOmitFiltered": true
-  }
-}
