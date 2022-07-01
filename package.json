@@ -19,6 +19,7 @@
     "cypress-grep": "3.0.1",
     "debug": "4.3.2",
     "eslint": "7.32.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-cypress": "2.12.1",
     "eslint-plugin-prettier": "4.0.0",
     "execa": "5.1.1",
@@ -51,7 +52,8 @@
     "rules": {
       "no-unused-expressions": "off",
       "no-undef": "off",
-      "jest/valid-describe": "off"
+      "jest/valid-describe": "off",
+      "jest/valid-describe-callback": "off"
     }
   }
 }
