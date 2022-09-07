@@ -16,7 +16,7 @@
     "@typescript-eslint/parser": "4.31.1",
     "cross-env": "7.0.3",
     "cypress": "10.7.0",
-    "cypress-grep": "3.0.2",
+    "cypress-grep": "3.0.3",
     "debug": "4.3.2",
     "eslint": "7.32.0",
     "eslint-config-react-app": "^7.0.1",
