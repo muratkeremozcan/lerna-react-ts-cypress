@@ -38,7 +38,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run the spec N times
-        uses: cypress-io/github-action@v5.0.5
+        uses: cypress-io/github-action@v6.6.1
         with:
           start: ${{ inputs.start-command }}
           wait-on: 'http://localhost:3000'
